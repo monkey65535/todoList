@@ -1,0 +1,163 @@
+/* reset */
+html, body, h1, h2, h3, h4, h5, h6, div, dl, dt, dd, ul, ol, li, p, blockquote, pre, hr, figure, table, caption, th, td, form, fieldset, legend, input, button, textarea, menu {
+  margin: 0;
+  padding: 0; }
+
+header, footer, section, article, aside, nav, hgroup, address, figure, figcaption, menu, details {
+  display: block; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+caption, th {
+  text-align: left;
+  font-weight: normal; }
+
+html, body, fieldset, img, iframe, abbr {
+  border: 0; }
+
+i, cite, em, var, address, dfn {
+  font-style: normal; }
+
+[hidefocus], summary {
+  outline: 0; }
+
+li {
+  list-style: none; }
+
+h1, h2, h3, h4, h5, h6, small {
+  font-size: 100%; }
+
+sup, sub {
+  font-size: 83%; }
+
+pre, code, kbd, samp {
+  font-family: inherit; }
+
+q:before {
+  content: none; }
+q:after {
+  content: none; }
+
+textarea {
+  overflow: auto;
+  resize: none; }
+
+label, summary {
+  cursor: default; }
+
+a, a:hover, button {
+  cursor: pointer; }
+
+h1, h2, h3, h4, h5, h6, em, strong, b {
+  font-weight: bold; }
+
+del, ins, u, s, a, a:hover, a:hover {
+  text-decoration: none; }
+
+body, textarea, input, button, select, keygen, legend {
+  font: 13px "Helvetica Neue",Helvetica,"Lucida Grande","Luxi Sans",Arial,"Hiragino Sans GB",STHeiti,"Microsoft YaHei","Wenquanyi Micro Hei","WenQuanYi Micro Hei Mono","WenQuanYi Zen Hei","WenQuanYi Zen Hei Mono",LiGothicMed;
+  color: #333;
+  outline: 0; }
+
+body {
+  background: #fff; }
+
+a, a:hover {
+  color: #333; }
+
+.clear-fix {
+  zoom: 1; }
+  .clear-fix:after {
+    content: "";
+    display: block;
+    clear: both; }
+
+/*color*/
+html, body {
+  width: 100%;
+  height: 100%; }
+
+body {
+  position: relative; }
+
+/*header*/
+#l-head {
+  width: 100%;
+  height: 60px;
+  background: #DDDDDD; }
+  #l-head h1 {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    font-size: 32px;
+    color: #9A9A9A;
+    text-indent: 1em; }
+
+.l-container {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #fff; }
+
+.m-container {
+  width: 100%;
+  height: 100%;
+  position: relative; }
+
+.m-all-task {
+  width: 220px;
+  padding-left: 10px;
+  background: #F2F2F2;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-right: 2px solid #C0C0BE;
+  overflow-y: auto; }
+  .m-all-task h2 {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    font-weight: normal;
+    font-size: 18px; }
+  .m-all-task h4 {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-weight: normal;
+    font-size: 16px;
+    margin-bottom: 10px; }
+
+.task-list i {
+  font-weight: normal; }
+.task-list li h5 {
+  cursor: pointer;
+  padding: 10px; }
+  .task-list li h5 .js-task-del {
+    font-size: 12px;
+    font-weight: normal;
+    float: right;
+    display: none; }
+  .task-list li h5:hover .js-task-del {
+    display: block; }
+.task-list li a {
+  padding: 10px 10px 10px 24px;
+  display: block; }
+  .task-list li a .js-task-del {
+    margin-top: 3px;
+    font-size: 12px;
+    font-weight: normal;
+    float: right;
+    display: none; }
+  .task-list li a.act {
+    background: #fff; }
+  .task-list li a:hover {
+    background: #fff; }
+    .task-list li a:hover .js-task-del {
+      display: block; }
