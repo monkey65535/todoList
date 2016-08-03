@@ -1,18 +1,24 @@
 @import "reset";
 @import "mixin";
-html,body{
+
+html, body {
   width: 100%;
   height: 100%;
 }
-body{
+
+body {
+  min-width: 850px;
   position: relative;
+  color: $black;
 }
+
 /*header*/
-#l-head{
+#l-head {
   width: 100%;
   height: 60px;
   background: $head-bg;
-  h1{
+  border-bottom: 1px solid $border;
+  h1 {
     width: 100%;
     @include text-line(60px);
     font-size: 32px;
@@ -20,85 +26,299 @@ body{
     text-indent: 1em;
   }
 }
-.l-container{
+
+.l-container {
   width: 100%;
   height: auto;
   position: absolute;
-  top: 60px;
+  top: 61px;
   left: 0;
   bottom: 0;
-  right:0;
+  right: 0;
   background: $white;
 }
-.m-container{
+
+.m-container {
   width: 100%;
   height: 100%;
   position: relative;
 }
-.m-all-task{
+
+.m-all-task {
   width: 220px;
   padding-left: 10px;
   background: $all-task-bg;
   position: absolute;
   top: 0;
-  bottom: 0;
+  bottom: 45px;
   left: 0;
-  border-right: 2px solid $border;
+  border-right: 1px solid $border;
   overflow-y: auto;
-  h2{
+  h2 {
     width: 100%;
     @include text-line(50px);
     font-weight: normal;
     font-size: 18px;
   }
-  h4{
+  h4 {
     width: 100%;
     @include text-line(30px);
     font-weight: normal;
     font-size: 16px;
     margin-bottom: 10px;
-    }
   }
+}
 
-.task-list{
-  i{
+.task-list {
+  i {
     font-weight: normal;
   }
-  li{
-    h5{
+  li {
+    h5 {
       cursor: pointer;
       padding: 10px;
-      .js-task-del{
+      .js-task-del {
         font-size: 12px;
         font-weight: normal;
         float: right;
         display: none;
       }
-      &:hover{
-        .js-task-del{
+      &:hover {
+        .js-task-del {
           display: block;
         }
       }
     }
-    a{
+    a {
       padding: 10px 10px 10px 24px;
       display: block;
-      .js-task-del{
+      .js-task-del {
         margin-top: 3px;
         font-size: 12px;
         font-weight: normal;
         float: right;
         display: none;
       }
-      &.act{
+      &.act {
         background: $white;
       }
-      &:hover{
+      &:hover {
         background: $white;
-        .js-task-del{
+        .js-task-del {
           display: block;
         }
       }
     }
+  }
+}
+
+.m-add-task {
+  width: 210px;
+  @include text-line(24px);
+  position: absolute;
+  padding: 10px;
+  bottom: 0;
+  left: 0;
+  border-top: 1px solid $border;
+  border-right: 1px solid $border;
+  background: $head-bg;
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+}
+
+.add-task-2 {
+  left: 231px;
+}
+
+.m-task {
+  width: 230px;
+  background: $all-task-bg;
+  position: absolute;
+  top: 0;
+  bottom: 45px;
+  border-right: 1px solid $border;
+  overflow-y: auto;
+  left: 231px;
+  background: $white;
+}
+
+.task-class {
+  width: 220px;
+  padding-left: 10px;
+  height: 40px;
+  background: $grey;
+  border-bottom: 1px solid $border;
+  font-size: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  a {
+    font-size: 14px;
+    display: inline-block;
+    padding: 4px;
+    vertical-align: middle;
+    margin-right: 4px;
+    margin-top: 6px;
+    &.act {
+      background: $white;
+      border: 1px solid $head-bg;
+    }
+  }
+}
+
+.m-task-list {
+  margin-top: 41px;
+  li {
+    width: 100%;
+    h4 {
+      padding: 10px;
+      background: $hover-yellow;
+    }
+    a {
+      width: 194px;
+      padding: 10px 10px 10px 26px;
+      display: block;
+      font-size: 14px;
+      position: relative;
+      .iconfont {
+        font-size: 12px;
+      }
+      .icon-close {
+        float: right;
+        display: none;
+        margin-top: 3px;
+      }
+      &:hover {
+        background: $grey;
+        .icon-close {
+          display: block;
+        }
+      }
+      .icon-sure {
+        position: absolute;
+        left: 6px;
+        top: 12px;
+      }
+      &.task-over {
+        color: $sure;
+      }
+      &.act{
+        background: $grey;
+      }
+    }
+  }
+}
+
+.m-task-msg {
+  position: absolute;
+  left: 462px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.msg-head {
+  min-width: 360px;
+  @include text-line(52px);
+  overflow-x: auto;
+  border-bottom: 1px solid $border;
+  background: $all-task-bg;
+  h3 {
+    padding-left: 20px;
+    font-size: 20px;
+    float: left;
+  }
+  .title{
+    height: 50px;
+    float: left;
+    margin-left: 20px;
+    span{
+      font-size: 24px;
+      display: block;
+    }
+    .task-title{
+      height: 24px;
+      margin-top: 12px;
+      display: none;
+    }
+  }
+  .icon {
+    height: 50px;
+    float: right;
+    margin-right: 20px;
+    a{
+      display: inline-block;
+      height: 50px;
+      margin-right: 20px;
+      i {
+        font-size: 24px;
+      }
+    }
+  }
+}
+.msg-time{
+  @include text-line(50px);
+  background: $hover-yellow;
+  border-bottom: 1px solid $border;
+  h4{
+    float: left;
+    padding-left: 10px;
+  }
+  .time{
+    font-size: 14px;
+    float: left;
+    margin-left: 20px;
+    span{
+      display: inline-block;
+    }
+    .task-time{
+      display: none;
+    }
+  }
+}
+.mes-content{
+  padding: 10px;
+  position: absolute;
+  top: 104px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.edit-mes{
+  display: none;
+  .edit-text{
+    width: 100%;
+    height: 200px;
+    padding: 8px;
+    font-size: 14px;
+    -webkit-border-radius: 4px;
+    outline: 0;
+    background-color: $white;
+    border: 1px solid $border;
+    border-top-color: silver;
+    box-sizing: border-box;
+    margin-top: 20px;
+  }
+  .edit-btn{
+    float: right;
+  }
+  .edit-submit{
+    padding: 6px 20px;
+    background: $button;
+    border: none;
+    margin-top: 20px;
+    margin-right: 20px;
+    color: $white;
+    @include border-radius(2px);
+    &:hover{
+      background: $button-hover;
+    }
+  }
+  .edit-reset{
+    @extend .edit-submit;
   }
 }

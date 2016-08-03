@@ -5,8 +5,11 @@ $border:#C0C0BE;
 $white:#fff;
 $black:#333;
 $all-task-bg:#F2F2F2;
-
+$grey:#EEEEEE;
 $hover-yellow:#FAFAEE;
+$sure:#3F9420;
+$button:#229ffd;
+$button-hover:#1B9AF7;
 
 
 
@@ -25,4 +28,9 @@ $hover-yellow:#FAFAEE;
   -ms-transition: $time;
   -o-transition: $time;
   transition: $time;
+}
+@mixin border-radius($bor){
+  -webkit-border-radius:$bor;
+  -moz-border-radius:$bor;
+  border-radius:$bor;
 }
