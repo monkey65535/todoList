@@ -16,12 +16,12 @@ category = [
     },
     {
         id: 1,
-        name: "百度IFE项目",
+        name: "CSS",
         child: [1]
     },
     {
         id: 2,
-        name: "Javascript从入门到放弃",
+        name: "Javascript",
         child: [2,3]
     }
 ];
@@ -34,19 +34,19 @@ cateChild = [
         fatherId: [0]
     },
     {
-        name: "category1",
+        name: "CSS1",
         id: 1,
         child: [0, 1, 2],
         fatherId: [1]
     },
     {
-        name: "category2",
+        name: "JS2",
         id: 2,
         child: [3],
         fatherId: [2]
     },
     {
-        name: "category3",
+        name: "JS3",
         id: 3,
         child: [4],
         fatherId: [2]
