@@ -104,7 +104,7 @@ toDo = [
     },
     {
         id: 6,
-        name: 'toDo-76',
+        name: 'toDo-6',
         data: '2016-06-16',
         fatherId: [0],
         content: "这里是Todo-6",

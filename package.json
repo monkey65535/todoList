@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/monkey65535/todoList#readme",
   "devDependencies": {
+    "browser-sync": "^2.14.0",
     "gulp": "^3.9.1",
     "gulp-ruby-sass": "^2.0.6"
   }

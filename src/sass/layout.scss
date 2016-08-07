@@ -45,8 +45,7 @@ body {
 }
 
 .m-all-task {
-  width: 220px;
-  padding-left: 10px;
+  width: 230px;
   background: $all-task-bg;
   position: absolute;
   top: 0;
@@ -59,6 +58,8 @@ body {
     @include text-line(50px);
     font-weight: normal;
     font-size: 18px;
+    text-indent: 1em;
+    cursor: pointer;
   }
   h4 {
     width: 100%;
@@ -67,6 +68,10 @@ body {
     font-size: 16px;
     margin-bottom: 10px;
   }
+  .act{
+    background: $hover-yellow;
+  }
+
 }
 
 .task-list {

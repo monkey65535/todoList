@@ -3,6 +3,7 @@
  */
 var gulp = require('gulp');
 var rubySass = require('gulp-ruby-sass');
+var browserSync = require('browser-sync');
 
 //sass编译
 gulp.task('sass',function () {
@@ -17,6 +18,21 @@ gulp.task('sassWacth',function () {
     })
 });
 
+//自动刷新页面
+gulp.task('reloadPage',function () {
+    browserSync({
+        server: {
+            //指定服务器启动根目录
+            baseDir: "./"
+        }
+    });
+    //监听任何文件变化，实时刷新页面
+    gulp.watch("src/js/*.js").on('change', browserSync.reload);
+    gulp.watch("src/css/*.css").on('change', browserSync.reload);
+    gulp.watch("*.*").on('change', browserSync.reload);
+});
+
+//默认任务
 gulp.task('default',function () {
     console.log("default");
 });
