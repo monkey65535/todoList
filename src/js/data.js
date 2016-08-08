@@ -31,25 +31,25 @@ cateChild = [
         name: "默认子分类",
         id: 0,
         child: [5, 6],
-        fatherId: [0]
+        fatherId: 0
     },
     {
         name: "CSS1",
         id: 1,
         child: [0, 1, 2],
-        fatherId: [1]
+        fatherId: 1
     },
     {
         name: "JS2",
         id: 2,
         child: [3],
-        fatherId: [2]
+        fatherId: 2
     },
     {
         name: "JS3",
         id: 3,
         child: [4],
-        fatherId: [2]
+        fatherId: 2
     }
 ];
 //任务内容
@@ -57,8 +57,8 @@ toDo = [
     {
         id: 0,
         name: 'toDo-0',
-        data: '2016-01-13',
-        fatherId: [1],
+        data: '9999-99-13',
+        fatherId: 1,
         content: "这里是Todo-0",
         finish: true
     },
@@ -66,7 +66,7 @@ toDo = [
         id: 1,
         name: 'toDo-1',
         data: '2016-01-15',
-        fatherId: [1],
+        fatherId: 1,
         content: "这里是Todo-1",
         finish: true
     },
@@ -74,7 +74,7 @@ toDo = [
         id: 2,
         name: 'toDo-2',
         data: '2016-01-13',
-        fatherId: [1],
+        fatherId: 1,
         content: "这里是Todo-2",
         finish: false
     },
@@ -82,15 +82,15 @@ toDo = [
         id: 3,
         name: 'toDo-3',
         data: '2016-01-13',
-        fatherId: [2],
+        fatherId: 2,
         content: "这里是Todo-3",
         finish: true
     },
     {
         id: 4,
         name: 'toDo-4',
-        data: '2016-01-15',
-        fatherId: [2],
+        data: '9998-01-15',
+        fatherId: 2,
         content: "这里是Todo-4",
         finish: false
     }
@@ -98,7 +98,7 @@ toDo = [
         id: 5,
         name: 'toDo-5',
         data: '2016-01-16',
-        fatherId: [2],
+        fatherId: 2,
         content: "这里是Todo-5",
         finish: false
     },
@@ -106,7 +106,7 @@ toDo = [
         id: 6,
         name: 'toDo-6',
         data: '2016-06-16',
-        fatherId: [0],
+        fatherId: 0,
         content: "这里是Todo-6",
         finish: false
     }
