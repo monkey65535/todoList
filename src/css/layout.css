@@ -216,7 +216,8 @@ body {
     padding: 4px;
     vertical-align: middle;
     margin-right: 4px;
-    margin-top: 6px; }
+    margin-top: 6px;
+    border: 1px solid transparent; }
     .task-class a.act {
       background: #fff;
       border: 1px solid #DDDDDD; }
@@ -346,3 +347,61 @@ body {
     border-radius: 2px; }
     .edit-mes .edit-submit:hover, .edit-mes .edit-reset:hover {
       background: #1B9AF7; }
+
+/*popus*/
+#popus {
+  background: rgba(51, 51, 51, 0.71);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999; }
+  #popus .m-popus-search {
+    width: 350px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+    #popus .m-popus-search .pop-search-title {
+      padding: 10px;
+      background: #FAFAEE;
+      border-radius: 5px 5px 0 0;
+      color: #333;
+      border-bottom: 1px solid #C0C0BE; }
+      #popus .m-popus-search .pop-search-title span {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ff0000;
+        float: right;
+        margin-top: 4px;
+        cursor: pointer; }
+    #popus .m-popus-search .pop-search-con {
+      padding: 10px 10px;
+      background: #fff;
+      border-radius: 0 0 5px 5px; }
+      #popus .m-popus-search .pop-search-con p {
+        height: 48px;
+        line-height: 48px; }
+        #popus .m-popus-search .pop-search-con p input, #popus .m-popus-search .pop-search-con p select {
+          margin-left: 10px;
+          height: 24px;
+          border: 1px solid #d9d9d9; }
+      #popus .m-popus-search .pop-search-con button {
+        margin-top: 10px;
+        margin-right: 10px;
+        float: right;
+        color: #fff;
+        padding: 4px 14px;
+        border-radius: 4px;
+        border: none;
+        background: #229ffd; }
+        #popus .m-popus-search .pop-search-con button:hover {
+          background: #1B9AF7; }

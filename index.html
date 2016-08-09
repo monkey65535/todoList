@@ -44,8 +44,8 @@
 		<section class="m-task">
 			<div class="task-class">
 				<a href="javascript:;" class="act">所有</a>
-				<a href="javascript:;">未完成</a>
-				<a href="javascript:;">已完成</a>
+				<a href="javascript:;" data-type="true">已完成</a>
+				<a href="javascript:;" data-type="false">未完成</a>
 			</div>
 			<ul class="m-task-list">
 				<!--<li>
@@ -95,8 +95,16 @@
 		</section>
 	</div>
 </section>
-<div class="text">
-	这个用来测试
+<div id="popus" class="m-popus">
+	<div class="m-popus-search">
+		<div class="pop-search-title clear-fix">新增分类 <span></span></div>
+		<div class="pop-search-con clear-fix">
+			<p>新分类名称 <input type="text" placeholder="请输入分类的名称"></p>
+			<p>新分类节点<select></select></p>
+			<button>确认</button>
+			<button>取消</button>
+		</div>
+	</div>
 </div>
 <script src="src/js/data.js"></script>
 <script src="src/js/template.js"></script>

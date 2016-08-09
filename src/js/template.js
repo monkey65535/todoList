@@ -29,8 +29,9 @@ function renderLeftCate() {
     return leftCate;
 }
 
-function renderMiddleCate(child) {
+function renderMiddleCate(child, bool) {
     child = child || toDo;
+    bool = '' || bool;
     //将时间节点添加到一个对象中，对象的key是时间，value是一个数组，数组中放入这个i
     var dataObj = {};
     //如果不填写参数，那么child为默认参数。默认参数的每一个值是对象，所以需要做一个判断。传入参数的话传入的参数应该是cateChild[n].child
@@ -64,18 +65,40 @@ function renderMiddleCate(child) {
 //循环dataObj，生成中间的节点
     var midTaskList = "";
     for (var attr in dataObj) {
-        midTaskList += '<li>' + '<h4>' + attr + '</h4>';
-        for (var i = 0; i < dataObj[attr].length; i++) {
-            if (toDo[dataObj[attr][i]].finish) {
-                midTaskList += '<a class="task-over choose" data-id="' + toDo[dataObj[attr][i]].id + '"><i class="iconfont icon-sure"></i>' + toDo[dataObj[attr][i]].name + ' <i class="iconfont icon-close"></i></a>';
-            } else {
-                midTaskList += '<a class="choose" data-id="' + toDo[dataObj[attr][i]].id + '">' + toDo[dataObj[attr][i]].name + '<i class="iconfont icon-close"></i></a>';
+        //如果传入了一个undifende，那么就是所有
+        if(typeof bool === "undefined"){
+            midTaskList += '<li>' + '<h4>' + attr + '</h4>';
+            for (var i = 0; i < dataObj[attr].length; i++) {
+                if (toDo[dataObj[attr][i]].finish) {
+                    midTaskList += '<a class="task-over js-middle-chose" data-id="' + toDo[dataObj[attr][i]].id + '"><i class="iconfont icon-sure"></i>' + toDo[dataObj[attr][i]].name + ' <i class="iconfont icon-close"></i></a>';
+                } else {
+                    midTaskList += '<a class="js-middle-chose" data-id="' + toDo[dataObj[attr][i]].id + '">' + toDo[dataObj[attr][i]].name + '<i class="iconfont icon-close"></i></a>';
+                }
+            }
+        }
+        //如果传入true，那么就是已完成
+        if(bool === "true"){
+            midTaskList += '<li>' + '<h4>' + attr + '</h4>';
+            for (var i = 0; i < dataObj[attr].length; i++) {
+                if (toDo[dataObj[attr][i]].finish) {
+                    midTaskList += '<a class="task-over js-middle-chose" data-id="' + toDo[dataObj[attr][i]].id + '"><i class="iconfont icon-sure"></i>' + toDo[dataObj[attr][i]].name + ' <i class="iconfont icon-close"></i></a>';
+                }
+            }
+        }
+        //如果传入false，那么就是未完成
+        if(bool === "false"){
+            midTaskList += '<li>' + '<h4>' + attr + '</h4>';
+            for (var i = 0; i < dataObj[attr].length; i++) {
+                if (!toDo[dataObj[attr][i]].finish) {
+                    midTaskList += '<a class="js-middle-chose" data-id="' + toDo[dataObj[attr][i]].id + '">' + toDo[dataObj[attr][i]].name + '<i class="iconfont icon-close"></i></a>';
+                }
             }
         }
     }
     midTaskList += '</li>';
     return midTaskList;
 }
+
 
 //传入一个id，生成右侧内容
 function renderRightTask(choseId) {
@@ -90,3 +113,4 @@ function renderRightTask(choseId) {
         }
     }
 }
+

@@ -68,7 +68,7 @@ body {
     font-size: 16px;
     margin-bottom: 10px;
   }
-  .act{
+  .act {
     background: $hover-yellow;
   }
 
@@ -169,6 +169,7 @@ body {
     vertical-align: middle;
     margin-right: 4px;
     margin-top: 6px;
+    border: 1px solid transparent;
     &.act {
       background: $white;
       border: 1px solid $head-bg;
@@ -212,7 +213,7 @@ body {
       &.task-over {
         color: $sure;
       }
-      &.act{
+      &.act {
         background: $grey;
       }
     }
@@ -238,15 +239,15 @@ body {
     font-size: 20px;
     float: left;
   }
-  .title{
+  .title {
     height: 50px;
     float: left;
     margin-left: 20px;
-    span{
+    span {
       font-size: 24px;
       display: block;
     }
-    .task-title{
+    .task-title {
       height: 24px;
       margin-top: 12px;
       display: none;
@@ -256,7 +257,7 @@ body {
     height: 50px;
     float: right;
     margin-right: 20px;
-    a{
+    a {
       display: inline-block;
       height: 50px;
       margin-right: 20px;
@@ -266,27 +267,29 @@ body {
     }
   }
 }
-.msg-time{
+
+.msg-time {
   @include text-line(50px);
   background: $hover-yellow;
   border-bottom: 1px solid $border;
-  h4{
+  h4 {
     float: left;
     padding-left: 10px;
   }
-  .time{
+  .time {
     font-size: 14px;
     float: left;
     margin-left: 20px;
-    span{
+    span {
       display: inline-block;
     }
-    .task-time{
+    .task-time {
       display: none;
     }
   }
 }
-.mes-content{
+
+.mes-content {
   padding: 10px;
   position: absolute;
   top: 104px;
@@ -294,9 +297,10 @@ body {
   right: 0;
   bottom: 0;
 }
-.edit-mes{
+
+.edit-mes {
   display: none;
-  .edit-text{
+  .edit-text {
     width: 100%;
     height: 200px;
     padding: 8px;
@@ -309,10 +313,10 @@ body {
     box-sizing: border-box;
     margin-top: 20px;
   }
-  .edit-btn{
+  .edit-btn {
     float: right;
   }
-  .edit-submit{
+  .edit-submit {
     padding: 6px 20px;
     background: $button;
     border: none;
@@ -320,11 +324,77 @@ body {
     margin-right: 20px;
     color: $white;
     @include border-radius(2px);
-    &:hover{
+    &:hover {
       background: $button-hover;
     }
   }
-  .edit-reset{
+  .edit-reset {
     @extend .edit-submit;
+  }
+}
+
+/*popus*/
+#popus {
+  background: rgba(51, 51, 51, 0.71);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 999;
+  .m-popus-search {
+    width: 350px;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    .pop-search-title {
+      padding: 10px;
+      background: $hover-yellow;
+      border-radius: 5px 5px 0 0;
+      color: $black;
+      border-bottom: 1px solid $border;
+      span{
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ff0000;
+        float: right;
+        margin-top: 4px;
+        cursor: pointer;
+      }
+    }
+    .pop-search-con {
+      padding: 10px 10px;
+      background: $white;
+      border-radius: 0 0 5px 5px;
+      p {
+        @include text-line(48px);
+        input, select {
+          margin-left: 10px;
+          height: 24px;
+          border: 1px solid #d9d9d9;;
+        }
+      }
+      button {
+        margin-top: 10px;
+        margin-right: 10px;
+        float: right;
+        color: $white;
+        padding: 4px 14px;
+        border-radius: 4px;
+        border: none;
+        background: $button;
+        &:hover {
+          background: $button-hover;
+        }
+      }
+    }
   }
 }
