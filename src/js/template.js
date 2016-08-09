@@ -66,7 +66,7 @@ function renderMiddleCate(child, bool) {
     var midTaskList = "";
     for (var attr in dataObj) {
         //如果传入了一个undifende，那么就是所有
-        if(typeof bool === "undefined"){
+        if (typeof bool === "undefined") {
             midTaskList += '<li>' + '<h4>' + attr + '</h4>';
             for (var i = 0; i < dataObj[attr].length; i++) {
                 if (toDo[dataObj[attr][i]].finish) {
@@ -77,7 +77,7 @@ function renderMiddleCate(child, bool) {
             }
         }
         //如果传入true，那么就是已完成
-        if(bool === "true"){
+        if (bool === "true") {
             midTaskList += '<li>' + '<h4>' + attr + '</h4>';
             for (var i = 0; i < dataObj[attr].length; i++) {
                 if (toDo[dataObj[attr][i]].finish) {
@@ -86,7 +86,7 @@ function renderMiddleCate(child, bool) {
             }
         }
         //如果传入false，那么就是未完成
-        if(bool === "false"){
+        if (bool === "false") {
             midTaskList += '<li>' + '<h4>' + attr + '</h4>';
             for (var i = 0; i < dataObj[attr].length; i++) {
                 if (!toDo[dataObj[attr][i]].finish) {
@@ -113,4 +113,5 @@ function renderRightTask(choseId) {
         }
     }
 }
+
 

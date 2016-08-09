@@ -335,6 +335,7 @@ body {
 
 /*popus*/
 #popus {
+  display: none;
   background: rgba(51, 51, 51, 0.71);
   position: fixed;
   top: 0;
@@ -369,6 +370,11 @@ body {
         margin-top: 4px;
         cursor: pointer;
       }
+    }
+    .pop-tips{
+      @include text-line(14px);
+      color: #ff0000;
+      font-size: 12px;
     }
     .pop-search-con {
       padding: 10px 10px;
