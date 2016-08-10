@@ -209,9 +209,13 @@ body {
         position: absolute;
         left: 6px;
         top: 12px;
+        display: none;
       }
       &.task-over {
         color: $sure;
+       .icon-sure{
+         display: block;
+       }
       }
       &.act {
         background: $grey;

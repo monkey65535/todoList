@@ -14,7 +14,7 @@ var taskList = document.querySelector(".m-task");
 var mTaskList = taskList.querySelector(".m-task-list");
 
 //渲染中间内容
-mTaskList.innerHTML = renderMiddleCate();
+mTaskList.innerHTML = renderMiddleCate("");
 var middleChose = mTaskList.querySelectorAll(".js-middle-chose");
 
 //默认选中第一个li
@@ -42,8 +42,8 @@ function leftChange() {
             //然后去渲染右侧的任务列表 有三种情况。
             if (this.tagName === "H2") {
                 //当点击所有任务的时候，渲染所有右侧列表
-                mTaskList.innerHTML = renderMiddleCate();
-                rightClick();
+                mTaskList.innerHTML = renderMiddleCate("");
+                rightClick(true);
                 fatherData = "";
             } else if (this.tagName === "H5") {
                 //当点击标题文件的时候，渲染对应的文件列表
@@ -57,14 +57,24 @@ function leftChange() {
                         });
                         //根据childArr去生成中间的菜单
                         mTaskList.innerHTML = renderMiddleCate(childArr);
-                        rightClick();
+                        if (childArr.length != 0) {
+                            rightClick(true);
+                        } else {
+                            rightClick();
+                        }
+
                         fatherData = childArr;
                     }
                 });
             } else if (this.tagName === "A") {
                 //直接根据dataset去渲染
                 mTaskList.innerHTML = renderMiddleCate(cateChild[dataset].child);
-                rightClick();
+                if (cateChild[dataset].child.length != 0) {
+                    rightClick(true);
+                } else {
+                    rightClick();
+                }
+
             }
             //渲染页面之后直接让taskType变成所有
             var taskType = document.querySelector(".task-class");
@@ -78,24 +88,29 @@ function leftChange() {
 }
 
 //点击中间的内容去显示最右侧的文字能容
-rightClick();
-function rightClick(id) {
-    id = id || 0;
+rightClick(true);
+function rightClick(bool) {
     var middleChose = mTaskList.querySelectorAll(".js-middle-chose");
     for (var i = 0; i < middleChose.length; i++) {
         middleChose[i].addEventListener('click', function () {
             for (var i = 0; i < middleChose.length; i++) {
                 removeClass(middleChose[i], 'act');
             }
+            console.log(this);
             addClass(this, "act");
             var dataSet = this.dataset.id;
             renderRightTask(dataSet);
         });
     }
     //默认显示第一个
-    addClass(middleChose[id], "act");
-    var defDate = middleChose[id].dataset.id;
-    renderRightTask(defDate);
+    addClass(middleChose[0], "act");
+    //根据默认值渲染最右侧内容
+    if (bool) {
+        var defDate = middleChose[0].dataset.id;
+        renderRightTask(defDate);
+    }else {
+        renderRightTask();
+    }
 }
 //选择完成状态
 taskTpyeChange();
@@ -126,7 +141,7 @@ function taskTpyeChange() {
                     h4s[i].parentNode.style.display = "none";
                 }
             }
-            rightClick();
+            rightClick(true);
         })
     }
 }
@@ -275,7 +290,11 @@ function addTask() {
         if (cateAct.tagName == "H2") {
             fatherId = 0;
         } else if (cateAct.tagName == "H5") {
-            fatherId = cateAct.nextElementSibling.children[0].dataset.id;
+            if (cateAct.nextElementSibling.children[0]) {
+                fatherId = cateAct.nextElementSibling.children[0].dataset.id;
+            } else {
+                alert("请先创建子分类");
+            }
         } else if (cateAct.tagName == "A") {
             fatherId = cateAct.dataset.id;
         }
@@ -303,20 +322,109 @@ function addTask() {
             cateChild.forEach(function (ele) {
                 if (ele.id == fatherId) {
                     ele.child.push(taskId);
-                    mTaskList.innerHTML = renderMiddleCate(ele.child);
+                    if (cateAct.tagName == "H2") {
+                        mTaskList.innerHTML = renderMiddleCate("");
+                    } else if (cateAct.tagName == "H5") {
+                        /*fatherId = cateAct.nextElementSibling.children[0].dataset.id;*/
+                        var dataset = cateAct.dataset.id;
+                        category.forEach(function (elem) {
+                            if (elem.id == dataset) {
+                                var childArr = [];
+                                elem.child.forEach(function (item) {
+                                    for (var i = 0; i < cateChild[item].child.length; i++) {
+                                        childArr.push(cateChild[item].child[i]);
+                                    }
+                                });
+                                //根据childArr去生成中间的菜单
+                                mTaskList.innerHTML = renderMiddleCate(childArr);
+                            }
+                        });
+                    } else if (cateAct.tagName == "A") {
+                        mTaskList.innerHTML = renderMiddleCate(ele.child);
+                    }
                     rightClick();
                     //然后关闭
                     closeFn();
                 }
             });
         }
+        submit.removeEventListener('click', submitFn);
     }
 }
 
+//文本修改
+(function finish() {
+    var icons = taskMes.querySelectorAll(".msg-head .icon a");
+    icons[0].addEventListener('click', function () {
+        var taskAct = mTaskList.querySelector(".act");
+        if (hasClass(taskAct, "task-over")) {
+            alert("这个任务是已完成的。");
+        } else {
+            //获取id，修改todo中的数据
+            toDo[taskAct.dataset.id].finish = true;
+            addClass(taskAct, "task-over");
+        }
+    });
+    icons[1].addEventListener('click', function () {
+        var taskAct = mTaskList.querySelector(".act");
+        var cateAct = mAllTask.querySelector(".act");
+        //点击按钮的时候修改右侧内容
+        var dataInp = taskMes.querySelector(".msg-time .time .task-time");
+        var dataTxt = taskMes.querySelector(".msg-time .time span");
+        var textBox = taskMes.querySelector(".mes-content .edit-mes");
+        var textMse = textBox.querySelector("textArea");
+        var text = taskMes.querySelector(".mes-content .work-message");
+        var tips = textBox.querySelector(".tips");
+        //关闭所有的txt，显示所有的inp
+        var textArr = [dataTxt, text];
+        var inpArr = [dataInp, textBox];
+        textArr.forEach(function (ele) {
+            ele.style.display = "none";
+        });
+        inpArr.forEach(function (ele) {
+            ele.style.display = "block";
+            ele.value = "";
+        });
+        //点击取消按钮
+        var reset = textBox.querySelector('.edit-reset');
+        var submit = textBox.querySelector('.edit-submit');
+        reset.addEventListener('click', closeFn);
+        submit.addEventListener('click', modify);
+        function closeFn() {
+            inpArr.forEach(function (ele) {
+                ele.value = "";
+                ele.style.display = "none";
+            });
+            textArr.forEach(function (ele) {
+                ele.style.display = "block";
+            });
+            textMse.value = "";
+        }
+
+        function modify() {
+            var actId = taskAct.dataset.id;
+            if (!/^\d{4}(\-|\/|.)\d{1,2}\1\d{1,2}$/.test(dataInp.value)) {
+                tips.innerHTML = "日期不符合格式. 请使用yyyy-dd-mm格式"
+            } else {
+                dataTxt.innerHTML = dataInp.value;
+                text.innerHTML = textMse.value;
+                //通过act的ID修改todo中的数据
+                toDo[actId].data = dataInp.value;
+                toDo[actId].content = textMse.value;
+                closeFn();
+            }
+        }
+    });
+})();
 
 //addClass
 function addClass(obj, classN) {
+    //console.log(obj);
+    if (!obj) {
+        return;
+    }
     var objClass = obj.className;
+
     //判断class中是否已经存在这个classN了
     if (objClass.indexOf(classN) != -1) {
         return;

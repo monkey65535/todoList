@@ -14,7 +14,7 @@ function renderLeftCate() {
         //循环生成子节点
         leftCateChild = "";
         elem.child.forEach(function (elem, i) {
-            leftCateChild += '<a data-id="' + cateChild[elem].id + '" class="js-all-choose"><i class="iconfont icon-work"></i>' + cateChild[elem].name + ' (' + cateChild[elem].child.length + ') <i class="iconfont icon-close js-task-del"></i></a>';
+            leftCateChild += '<a data-id="' + cateChild[elem].id + '" class="js-all-choose"><i class="iconfont icon-work"></i>' + cateChild[elem].name + '  <i class="iconfont icon-close js-task-del"></i></a>';
         });
 
         //生成父节点
@@ -30,7 +30,14 @@ function renderLeftCate() {
 }
 
 function renderMiddleCate(child, bool) {
-    child = child || toDo;
+    /*child = child || toDo;*/
+    if(typeof child == "object"){
+        child = child;
+    }else if(child == ""){
+        child = toDo;
+    }else {
+        child = [];
+    }
     bool = '' || bool;
     //将时间节点添加到一个对象中，对象的key是时间，value是一个数组，数组中放入这个i
     var dataObj = {};
@@ -72,7 +79,7 @@ function renderMiddleCate(child, bool) {
                 if (toDo[dataObj[attr][i]].finish) {
                     midTaskList += '<a class="task-over js-middle-chose" data-id="' + toDo[dataObj[attr][i]].id + '"><i class="iconfont icon-sure"></i>' + toDo[dataObj[attr][i]].name + ' <i class="iconfont icon-close"></i></a>';
                 } else {
-                    midTaskList += '<a class="js-middle-chose" data-id="' + toDo[dataObj[attr][i]].id + '">' + toDo[dataObj[attr][i]].name + '<i class="iconfont icon-close"></i></a>';
+                    midTaskList += '<a class="js-middle-chose" data-id="' + toDo[dataObj[attr][i]].id + '"><i class="iconfont icon-sure"></i>' + toDo[dataObj[attr][i]].name + '<i class="iconfont icon-close"></i></a>';
                 }
             }
         }
@@ -105,13 +112,20 @@ function renderRightTask(choseId) {
     var title = taskMes.querySelector('.msg-head .title span');
     var time = taskMes.querySelector('.msg-time .time span');
     var content = taskMes.querySelector('.mes-content .work-message');
-    for (var attr in toDo) {
-        if (toDo[attr].id == choseId) {
-            title.innerHTML = toDo[attr].name;
-            time.innerHTML = toDo[attr].data;
-            content.innerHTML = toDo[attr].content;
+    if(choseId){
+        for (var attr in toDo) {
+            if (toDo[attr].id == choseId) {
+                title.innerHTML = toDo[attr].name;
+                time.innerHTML = toDo[attr].data;
+                content.innerHTML = toDo[attr].content;
+            }
         }
+    }else {
+        title.innerHTML = "";
+        time.innerHTML = "";
+        content.innerHTML = "";
     }
+
 }
 
 

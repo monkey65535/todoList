@@ -248,9 +248,12 @@ body {
       .m-task-list li a .icon-sure {
         position: absolute;
         left: 6px;
-        top: 12px; }
+        top: 12px;
+        display: none; }
       .m-task-list li a.task-over {
         color: #3F9420; }
+        .m-task-list li a.task-over .icon-sure {
+          display: block; }
       .m-task-list li a.act {
         background: #EEEEEE; }
 
