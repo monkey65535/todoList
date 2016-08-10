@@ -277,6 +277,7 @@ body {
     padding-left: 10px;
   }
   .time {
+    @include text-line(50px);
     font-size: 14px;
     float: left;
     margin-left: 20px;
@@ -285,6 +286,8 @@ body {
     }
     .task-time {
       display: none;
+      height: 24px;
+      margin-top: 12px;
     }
   }
 }
@@ -313,6 +316,10 @@ body {
     box-sizing: border-box;
     margin-top: 20px;
   }
+  .tips{
+    color:#ff0000;
+    @include text-line(24px);
+  }
   .edit-btn {
     float: right;
   }
@@ -320,8 +327,7 @@ body {
     padding: 6px 20px;
     background: $button;
     border: none;
-    margin-top: 20px;
-    margin-right: 20px;
+    margin-left: 20px;
     color: $white;
     @include border-radius(2px);
     &:hover {

@@ -303,13 +303,17 @@ body {
     float: left;
     padding-left: 10px; }
   .msg-time .time {
+    height: 50px;
+    line-height: 50px;
     font-size: 14px;
     float: left;
     margin-left: 20px; }
     .msg-time .time span {
       display: inline-block; }
     .msg-time .time .task-time {
-      display: none; }
+      display: none;
+      height: 24px;
+      margin-top: 12px; }
 
 .mes-content {
   padding: 10px;
@@ -333,14 +337,17 @@ body {
     border-top-color: silver;
     box-sizing: border-box;
     margin-top: 20px; }
+  .edit-mes .tips {
+    color: #ff0000;
+    height: 24px;
+    line-height: 24px; }
   .edit-mes .edit-btn {
     float: right; }
   .edit-mes .edit-submit, .edit-mes .edit-reset {
     padding: 6px 20px;
     background: #229ffd;
     border: none;
-    margin-top: 20px;
-    margin-right: 20px;
+    margin-left: 20px;
     color: #fff;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;

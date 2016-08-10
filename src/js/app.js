@@ -13,8 +13,7 @@ allTaskLsit.innerHTML = renderLeftCate();
 var taskList = document.querySelector(".m-task");
 var mTaskList = taskList.querySelector(".m-task-list");
 
-//中间的任务列表
-var middleLsit = "";
+//渲染中间内容
 mTaskList.innerHTML = renderMiddleCate();
 var middleChose = mTaskList.querySelectorAll(".js-middle-chose");
 
@@ -29,8 +28,8 @@ renderRightTask(nowChose.dataset.id);
 
 //点击最左侧分类切换
 //存储fatherDate变量，作为下方taskTpyeChange函数使用
-leftChange();
 var fatherData;
+leftChange();
 function leftChange() {
     var leftCateArr = document.querySelectorAll(".js-all-choose");
     for (var i = 0; i < leftCateArr.length; i++) {
@@ -80,7 +79,8 @@ function leftChange() {
 
 //点击中间的内容去显示最右侧的文字能容
 rightClick();
-function rightClick() {
+function rightClick(id) {
+    id = id || 0;
     var middleChose = mTaskList.querySelectorAll(".js-middle-chose");
     for (var i = 0; i < middleChose.length; i++) {
         middleChose[i].addEventListener('click', function () {
@@ -92,6 +92,10 @@ function rightClick() {
             renderRightTask(dataSet);
         });
     }
+    //默认显示第一个
+    addClass(middleChose[id], "act");
+    var defDate = middleChose[id].dataset.id;
+    renderRightTask(defDate);
 }
 //选择完成状态
 taskTpyeChange();
@@ -140,7 +144,7 @@ function addCate(ev) {
     var str = "";
     str += '<option>无</option>';
     category.forEach(function (elem) {
-        str += '<option data-id="' + elem.id + '">' + elem.name + '</option>'
+        str += '<option>' + elem.name + '</option>'
     });
     cateSelect.innerHTML = str;
     //点击确认
@@ -220,6 +224,93 @@ function addCate(ev) {
     }
 
     ev.stopPropagation();
+}
+
+
+var newTask = document.querySelector('.add-task-2');
+newTask.addEventListener('click', addTask);
+//新增任务
+function addTask() {
+    //点击按钮的时候修改右侧内容
+    var titleInp = taskMes.querySelector(".msg-head .title .task-title");
+    var titleTxt = taskMes.querySelector(".msg-head .title span");
+    var dataInp = taskMes.querySelector(".msg-time .time .task-time");
+    var dataTxt = taskMes.querySelector(".msg-time .time span");
+    var textBox = taskMes.querySelector(".mes-content .edit-mes");
+    var text = taskMes.querySelector(".mes-content .work-message");
+    var tips = textBox.querySelector(".tips");
+    //关闭所有的txt，显示所有的inp
+    var textArr = [titleTxt, dataTxt, text];
+    var inpArr = [titleInp, dataInp, textBox];
+    textArr.forEach(function (ele) {
+        ele.style.display = "none";
+    });
+    inpArr.forEach(function (ele) {
+        ele.style.display = "block";
+        ele.value = "";
+    });
+    //点击取消按钮
+    var reset = textBox.querySelector('.edit-reset');
+    var submit = textBox.querySelector('.edit-submit');
+    reset.addEventListener('click', closeFn);
+    function closeFn() {
+        inpArr.forEach(function (ele) {
+            ele.value = "";
+            ele.style.display = "none";
+        });
+        textArr.forEach(function (ele) {
+            ele.style.display = "block";
+        });
+    }
+
+    //点击确定按钮
+    var taskId = toDo[toDo.length - 1].id;
+    //console.log(cateAct.dataset.id);
+    var json = {};
+    submit.addEventListener('click', submitFn);
+    function submitFn() {
+        var cateAct = mAllTask.querySelector(".act");
+        //fatherId用来判断添加这个子类的父级到底是谁。如果是全部分类，添加到默认列表。如果是大分类，就添加到大分类下面的第一个子分类
+        var fatherId = 0;
+        if (cateAct.tagName == "H2") {
+            fatherId = 0;
+        } else if (cateAct.tagName == "H5") {
+            fatherId = cateAct.nextElementSibling.children[0].dataset.id;
+        } else if (cateAct.tagName == "A") {
+            fatherId = cateAct.dataset.id;
+        }
+
+        //判断填写内容是否符合格式
+        if (!/^\S+$/.test(titleInp.value)) {
+            tips.innerHTML = "标题不能为空,不能包含空格"
+        }
+        if (!/^\d{4}(\-|\/|.)\d{1,2}\1\d{1,2}$/.test(dataInp.value)) {
+            tips.innerHTML = "日期不符合格式. 请使用yyyy-dd-mm格式"
+        }
+        var textInp = textBox.querySelector("textArea");
+        if (/^\S+$/.test(titleInp.value) && /^\d{4}(\-|\/|.)\d{1,2}\1\d{1,2}$/.test(dataInp.value)) {
+            taskId++;
+            json = {
+                id: taskId,
+                name: titleInp.value,
+                data: dataInp.value,
+                fatherId: fatherId,
+                content: textInp.value,
+                finish: false
+            };
+            //完成这个json之后，把数据push到todo中，然后把这个id push进他的父级的child属性中。
+            toDo.push(json);
+            cateChild.forEach(function (ele) {
+                if (ele.id == fatherId) {
+                    ele.child.push(taskId);
+                    mTaskList.innerHTML = renderMiddleCate(ele.child);
+                    rightClick();
+                    //然后关闭
+                    closeFn();
+                }
+            });
+        }
+    }
 }
 
 
