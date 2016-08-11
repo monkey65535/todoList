@@ -14,12 +14,12 @@ function renderLeftCate() {
         //循环生成子节点
         leftCateChild = "";
         elem.child.forEach(function (elem, i) {
-            leftCateChild += '<a data-id="' + cateChild[elem].id + '" class="js-all-choose"><i class="iconfont icon-work"></i>' + cateChild[elem].name + '  <i class="iconfont icon-close js-task-del"></i></a>';
+            leftCateChild += '<a data-id="' + cateChild[elem].id + '" class="js-all-choose"><i class="iconfont icon-work"></i>' + cateChild[elem].name + '</a>';
         });
 
         //生成父节点
         leftCate += '<li>' +
-            '<h5 data-id="' + elem.id + '" class="js-all-choose"><i class="iconfont icon-flie-open"></i>' + elem.name + ' (' + elem.child.length + ') <i class="iconfont icon-close js-task-del"></i>' +
+            '<h5 data-id="' + elem.id + '" class="js-all-choose"><i class="iconfont icon-flie-open"></i>' + elem.name + ' (' + elem.child.length + ')' +
             '</h5>' +
             '<div class="task">' +
             leftCateChild +
@@ -77,9 +77,9 @@ function renderMiddleCate(child, bool) {
             midTaskList += '<li>' + '<h4>' + attr + '</h4>';
             for (var i = 0; i < dataObj[attr].length; i++) {
                 if (toDo[dataObj[attr][i]].finish) {
-                    midTaskList += '<a class="task-over js-middle-chose" data-id="' + toDo[dataObj[attr][i]].id + '"><i class="iconfont icon-sure"></i>' + toDo[dataObj[attr][i]].name + ' <i class="iconfont icon-close"></i></a>';
+                    midTaskList += '<a class="task-over js-middle-chose" data-id="' + toDo[dataObj[attr][i]].id + '"><i class="iconfont icon-sure"></i>' + toDo[dataObj[attr][i]].name + ' </a>';
                 } else {
-                    midTaskList += '<a class="js-middle-chose" data-id="' + toDo[dataObj[attr][i]].id + '"><i class="iconfont icon-sure"></i>' + toDo[dataObj[attr][i]].name + '<i class="iconfont icon-close"></i></a>';
+                    midTaskList += '<a class="js-middle-chose" data-id="' + toDo[dataObj[attr][i]].id + '"><i class="iconfont icon-sure"></i>' + toDo[dataObj[attr][i]].name + '</a>';
                 }
             }
         }
@@ -88,7 +88,7 @@ function renderMiddleCate(child, bool) {
             midTaskList += '<li>' + '<h4>' + attr + '</h4>';
             for (var i = 0; i < dataObj[attr].length; i++) {
                 if (toDo[dataObj[attr][i]].finish) {
-                    midTaskList += '<a class="task-over js-middle-chose" data-id="' + toDo[dataObj[attr][i]].id + '"><i class="iconfont icon-sure"></i>' + toDo[dataObj[attr][i]].name + ' <i class="iconfont icon-close"></i></a>';
+                    midTaskList += '<a class="task-over js-middle-chose" data-id="' + toDo[dataObj[attr][i]].id + '"><i class="iconfont icon-sure"></i>' + toDo[dataObj[attr][i]].name + '</a>';
                 }
             }
         }

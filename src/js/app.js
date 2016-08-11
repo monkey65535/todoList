@@ -33,7 +33,7 @@ leftChange();
 function leftChange() {
     var leftCateArr = document.querySelectorAll(".js-all-choose");
     for (var i = 0; i < leftCateArr.length; i++) {
-        leftCateArr[i].onclick = function () {
+        leftCateArr[i].onclick = function (ev) {
             for (var i = 0; i < leftCateArr.length; i++) {
                 removeClass(leftCateArr[i], "act");
             }
@@ -83,6 +83,7 @@ function leftChange() {
                 removeClass(typeA[i], "act");
             }
             addClass(typeA[0], "act");
+            ev.cancelable = true;
         }
     }
 }
@@ -108,7 +109,7 @@ function rightClick(bool) {
     if (bool) {
         var defDate = middleChose[0].dataset.id;
         renderRightTask(defDate);
-    }else {
+    } else {
         renderRightTask();
     }
 }
@@ -122,26 +123,8 @@ function taskTpyeChange() {
         typeA[i].addEventListener('click', function () {
             //获取父级act的标签，根据不同情况去传入不同的参数
             var fatherAct = mAllTask.querySelector(".act");
-            for (var i = 0; i < typeA.length; i++) {
-                removeClass(typeA[i], "act");
+            if(fatherAct){
             }
-            addClass(this, "act");
-            data = this.dataset.type;
-            if (fatherAct.tagName == "H2") {
-                mTaskList.innerHTML = renderMiddleCate("", data);
-            } else if (fatherAct.tagName == "H5") {
-                mTaskList.innerHTML = renderMiddleCate(fatherData, data);
-            } else if (fatherAct.tagName == "A") {
-                mTaskList.innerHTML = renderMiddleCate(cateChild[fatherAct.dataset.id].child, data);
-            }
-            //渲染之后会有日期标签还在，那么就判断li里的h4标签是否有下一个，如果没有就把这个li给block掉
-            var h4s = mTaskList.getElementsByTagName("h4");
-            for (var i = 0; i < h4s.length; i++) {
-                if (!h4s[i].nextElementSibling) {
-                    h4s[i].parentNode.style.display = "none";
-                }
-            }
-            rightClick(true);
         })
     }
 }
@@ -240,8 +223,6 @@ function addCate(ev) {
 
     ev.stopPropagation();
 }
-
-
 var newTask = document.querySelector('.add-task-2');
 newTask.addEventListener('click', addTask);
 //新增任务
@@ -415,6 +396,19 @@ function addTask() {
             }
         }
     });
+})();
+
+//左侧cate的删除操作
+(function delCate () {
+    var cateDel = allTaskLsit.querySelectorAll(".js-task-del");
+    for(var i=0; i<cateDel.length;i++){
+        cateDel[i].addEventListener('click',deleteFn);
+        function deleteFn() {
+            var parent = this.parentNode;
+            var grandPa = parent.parentNode;
+            grandPa.removeChild(parent);
+        }
+    }
 })();
 
 //addClass
