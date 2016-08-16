@@ -1,0 +1,36 @@
+/*color*/
+$head-bg:#DDDDDD;
+$head-font:#9A9A9A;
+$border:#C0C0BE;
+$white:#fff;
+$black:#333;
+$all-task-bg:#F2F2F2;
+$grey:#EEEEEE;
+$hover-yellow:#FAFAEE;
+$sure:#3F9420;
+$button:#229ffd;
+$button-hover:#1B9AF7;
+
+
+
+@mixin text-line($height){
+  height: $height;
+  line-height: $height;
+}
+@mixin box-shadow($box){
+  -webkit-box-shadow: $box;
+  -moz-box-shadow: $box;
+  box-shadow: $box;
+}
+@mixin transition($time){
+  -webkit-transition: $time;
+  -moz-transition: $time;
+  -ms-transition: $time;
+  -o-transition: $time;
+  transition: $time;
+}
+@mixin border-radius($bor){
+  -webkit-border-radius:$bor;
+  -moz-border-radius:$bor;
+  border-radius:$bor;
+}

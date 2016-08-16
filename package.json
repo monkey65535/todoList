@@ -1,0 +1,24 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "一个简单的个人任务管理工具",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monkey65535/todoList.git"
+  },
+  "author": "dilidili",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monkey65535/todoList/issues"
+  },
+  "homepage": "https://github.com/monkey65535/todoList#readme",
+  "devDependencies": {
+    "browser-sync": "^2.14.0",
+    "gulp": "^3.9.1",
+    "gulp-ruby-sass": "^2.0.6"
+  }
+}
